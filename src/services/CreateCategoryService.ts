@@ -12,7 +12,7 @@ class CreateCategoryService {
         const categoryAlreadyExists = this.categoriesRepository.findByName(name);
 
         if (categoryAlreadyExists) {
-            throw new Error("Category already exists" );
+            throw { status: 400, message: "Category already exists"};
         }
     
         this.categoriesRepository.create({ name, description });

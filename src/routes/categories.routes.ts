@@ -16,13 +16,17 @@ categoriesRoutes.get("/", (request, response) => {
 });
 
 categoriesRoutes.post("/", (request, response) => {
-    const { name, description } = request.body;
+    try {
+        const { name, description } = request.body;
 
-    const createCategoryService = new CreateCategoryService(categoriesRepository);
-
-    createCategoryService.execute({ name, description });
-
-    return response.status(201).send();
+        const createCategoryService = new CreateCategoryService(categoriesRepository);
+    
+        createCategoryService.execute({ name, description });
+    
+        return response.status(201).send();
+    } catch (error) {
+        return response.status(error.status).json({ message: error.message });
+    }
 });
 
 export { categoriesRoutes };
