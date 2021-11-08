@@ -8,6 +8,10 @@ class CategoriesRepository implements ICategoriesRepository {
         this.categories = [];
     }
 
+    list(): Category[] {
+        return this.categories;
+    }
+
     create({ name, description }: ICreateCategoryDTO): void {
         const category = new Category();
 
@@ -18,10 +22,6 @@ class CategoriesRepository implements ICategoriesRepository {
         });
     
         this.categories.push(category);
-    }
-
-    list(): Category[] {
-        return this.categories;
     }
 
     findByName(name: string): Category {
