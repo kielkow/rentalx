@@ -1,14 +1,14 @@
-import { Specification } from "../model/Specification";
-import { ISpecificationsRepository } from "../repositories/ISpecificationsRepository";
+import { Specification } from '../model/Specification';
+import { ISpecificationsRepository } from '../repositories/ISpecificationsRepository';
 
 class ListSpecificationService {
-    constructor(private specificationsRepository: ISpecificationsRepository) {}
+  constructor(private specificationsRepository: ISpecificationsRepository) {}
 
-    execute(): Specification[] {
-        const specifications = this.specificationsRepository.list();
+  execute(): Specification[] {
+    const specifications = this.specificationsRepository.list();
 
-        return specifications;
-    }
+    return specifications;
+  }
 }
 
-export { ListSpecificationService }
+export { ListSpecificationService };
