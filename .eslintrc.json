@@ -45,6 +45,8 @@
         "no-empty-function": "off",
         "no-throw-literal": "off",
         "lines-between-class-members": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/no-explicit-any": "off",
         "import/extensions": [
             "error",
             "ignorePackages",
