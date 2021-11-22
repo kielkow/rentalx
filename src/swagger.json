@@ -7,5 +7,46 @@
         "contact": {
             "email": "matheuskiel@fiorifer.com.br"
         }
+    },
+    "paths": {
+        "/categories": {
+            "post": {
+                "tags": ["Category"],
+                "summary": "Create a category",
+                "description": "Create a new category",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "name": "SUV",
+                                    "description": "What is an SUV? The acronym SUV stands for Sport Utility Vehicle -- that is, sport utility vehicle. SUVs tend to have a large size, in addition to a spacious interior and the possibility of traveling in and out of the city."
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Category already exists"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        }
     }
 }
