@@ -8,6 +8,34 @@
             "email": "matheuskiel@fiorifer.com.br"
         }
     },
+    "components": {
+        "securitySchemes": {
+            "BasicAuth": {
+                "type": "http",
+                "scheme": "basic"
+            },
+            "BearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            },
+            "ApiKeyAuth": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "apiKey"
+            }
+        }
+    },
+    "security": [
+        {
+            "BasicAuth": []
+        },
+        {
+            "BearerAuth": []
+        },
+        {
+            "ApiKeyAuth": []
+        }
+    ],
     "paths": {
         "/categories": {
             "post": {
@@ -51,6 +79,7 @@
                 "tags": ["Category"],
                 "summary": "List categories",
                 "description": "List all categories",
+                "security": [],
                 "responses": {
                     "200": {
                         "description": "Success",
