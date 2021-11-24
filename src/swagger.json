@@ -42,6 +42,7 @@
                 "tags": ["Category"],
                 "summary": "Create a category",
                 "description": "Create a new category",
+                "security": [],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -79,6 +80,78 @@
                 "tags": ["Category"],
                 "summary": "List categories",
                 "description": "List all categories",
+                "security": [],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/specifications": {
+            "post": {
+                "tags": ["Specification"],
+                "summary": "Create a specification",
+                "description": "Create a new specification",
+                "security": [],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "name": "Alfa Romeo MiTo Specs",
+                                    "description": "Petrol Engine MiTo 0.9 Turbo TwinAir 85HP S&S Distinctive Specs; Year 2011; Horsepower 85; Engine Capacity 875cm3"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Specification already exists"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            },
+            "get": {
+                "tags": ["Specification"],
+                "summary": "List specifications",
+                "description": "List all specifications",
                 "security": [],
                 "responses": {
                     "200": {
