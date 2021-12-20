@@ -125,19 +125,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "name": {
-                                        "type": "string"
-                                    },
-                                    "description": {
-                                        "type": "string"
-                                    }
-                                },
-                                "example": {
-                                    "name": "Alfa Romeo MiTo Specs",
-                                    "description": "Petrol Engine MiTo 0.9 Turbo TwinAir 85HP S&S Distinctive Specs; Year 2011; Horsepower 85; Engine Capacity 875cm3"
-                                }
+                                "$ref": "#/definitions/CreateSpecification"
                             }
                         }
                     }
@@ -165,24 +153,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "id": {
-                                                "type": "string"
-                                            },
-                                            "name": {
-                                                "type": "string"
-                                            },
-                                            "description": {
-                                                "type": "string"
-                                            },
-                                            "created_at": {
-                                                "type": "string"
-                                            }
-                                        }
-                                    }
+                                    "$ref": "#/definitions/ListSpecifications"
                                 }
                             }
                         }
@@ -192,6 +163,51 @@
                     }
                 }
             }
+        }
+    },
+    "definitions": {
+        "CreateSpecification": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                }
+            },
+            "example": {
+                "name": "Alfa Romeo MiTo Specs",
+                "description": "Petrol Engine MiTo 0.9 Turbo TwinAir 85HP S&S Distinctive Specs; Year 2011; Horsepower 85; Engine Capacity 875cm3"
+            }
+        },
+        "ListSpecifications": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string"
+                    }
+                }
+            },
+            "example": [
+                {
+                    "id": "51bd7f19-820a-46fa-9c62-a2bac707176c",
+                    "name": "Alfa Romeo MiTo Specs",
+                    "description": "Petrol Engine MiTo 0.9 Turbo TwinAir 85HP S&S Distinctive Specs; Year 2011; Horsepower 85; Engine Capacity 875cm3",
+                    "created_at": "2021-12-13T14:34:05.823Z"
+                }
+            ]
         }
     }
 }
