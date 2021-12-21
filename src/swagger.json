@@ -39,7 +39,9 @@
     "paths": {
         "/categories": {
             "post": {
-                "tags": ["Category"],
+                "tags": [
+                    "Category"
+                ],
                 "summary": "Create a category",
                 "description": "Create a new category",
                 "security": [],
@@ -47,19 +49,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "name": {
-                                        "type": "string"
-                                    },
-                                    "description": {
-                                        "type": "string"
-                                    }
-                                },
-                                "example": {
-                                    "name": "SUV",
-                                    "description": "What is an SUV? The acronym SUV stands for Sport Utility Vehicle -- that is, sport utility vehicle. SUVs tend to have a large size, in addition to a spacious interior and the possibility of traveling in and out of the city."
-                                }
+                                "$ref": "#/definitions/Category/Create"
                             }
                         }
                     }
@@ -77,7 +67,9 @@
                 }
             },
             "get": {
-                "tags": ["Category"],
+                "tags": [
+                    "Category"
+                ],
                 "summary": "List categories",
                 "description": "List all categories",
                 "security": [],
@@ -87,24 +79,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "object",
-                                        "properties": {
-                                            "id": {
-                                                "type": "string"
-                                            },
-                                            "name": {
-                                                "type": "string"
-                                            },
-                                            "description": {
-                                                "type": "string"
-                                            },
-                                            "created_at": {
-                                                "type": "string"
-                                            }
-                                        }
-                                    }
+                                    "$ref": "#/definitions/Category/List"
                                 }
                             }
                         }
@@ -117,7 +92,9 @@
         },
         "/specifications": {
             "post": {
-                "tags": ["Specification"],
+                "tags": [
+                    "Specification"
+                ],
                 "summary": "Create a specification",
                 "description": "Create a new specification",
                 "security": [],
@@ -125,7 +102,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/definitions/CreateSpecification"
+                                "$ref": "#/definitions/Specification/Create"
                             }
                         }
                     }
@@ -143,7 +120,9 @@
                 }
             },
             "get": {
-                "tags": ["Specification"],
+                "tags": [
+                    "Specification"
+                ],
                 "summary": "List specifications",
                 "description": "List all specifications",
                 "security": [],
@@ -153,7 +132,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/definitions/ListSpecifications"
+                                    "$ref": "#/definitions/Specification/List"
                                 }
                             }
                         }
@@ -166,48 +145,95 @@
         }
     },
     "definitions": {
-        "CreateSpecification": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                }
-            },
-            "example": {
-                "name": "Alfa Romeo MiTo Specs",
-                "description": "Petrol Engine MiTo 0.9 Turbo TwinAir 85HP S&S Distinctive Specs; Year 2011; Horsepower 85; Engine Capacity 875cm3"
-            }
-        },
-        "ListSpecifications": {
-            "type": "array",
-            "items": {
+        "Specification": {
+            "Create": {
                 "type": "object",
                 "properties": {
-                    "id": {
-                        "type": "string"
-                    },
                     "name": {
                         "type": "string"
                     },
                     "description": {
                         "type": "string"
-                    },
-                    "created_at": {
-                        "type": "string"
                     }
+                },
+                "example": {
+                    "name": "Alfa Romeo MiTo Specs",
+                    "description": "Petrol Engine MiTo 0.9 Turbo TwinAir 85HP S&S Distinctive Specs; Year 2011; Horsepower 85; Engine Capacity 875cm3"
                 }
             },
-            "example": [
-                {
-                    "id": "51bd7f19-820a-46fa-9c62-a2bac707176c",
-                    "name": "Alfa Romeo MiTo Specs",
-                    "description": "Petrol Engine MiTo 0.9 Turbo TwinAir 85HP S&S Distinctive Specs; Year 2011; Horsepower 85; Engine Capacity 875cm3",
-                    "created_at": "2021-12-13T14:34:05.823Z"
+            "List": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "description": {
+                            "type": "string"
+                        },
+                        "created_at": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "example": [
+                    {
+                        "id": "51bd7f19-820a-46fa-9c62-a2bac707176c",
+                        "name": "Alfa Romeo MiTo Specs",
+                        "description": "Petrol Engine MiTo 0.9 Turbo TwinAir 85HP S&S Distinctive Specs; Year 2011; Horsepower 85; Engine Capacity 875cm3",
+                        "created_at": "2021-12-13T14:34:05.823Z"
+                    }
+                ]
+            }
+        },
+        "Category": {
+            "Create": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "name": "SUV",
+                    "description": "What is an SUV? The acronym SUV stands for Sport Utility Vehicle -- that is, sport utility vehicle. SUVs tend to have a large size, in addition to a spacious interior and the possibility of traveling in and out of the city."
                 }
-            ]
+            },
+            "List": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "description": {
+                            "type": "string"
+                        },
+                        "created_at": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "example": [
+                    {
+                        "id": "bfbb138a-1507-4502-8cf2-e88b8ab005fb",
+                        "name": "SUV",
+                        "description": "What is an SUV? The acronym SUV stands for Sport Utility Vehicle -- that is, sport utility vehicle. SUVs tend to have a large size, in addition to a spacious interior and the possibility of traveling in and out of the city.",
+                        "created_at": "2021-12-13T14:33:37.356Z"
+                    }
+                ]
+            }
         }
     }
 }
