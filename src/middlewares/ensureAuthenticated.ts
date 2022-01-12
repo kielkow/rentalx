@@ -21,10 +21,17 @@ export async function ensureAuthenticated(
 
   const [, token] = authHeader.split(' ');
 
-  const { sub: user_id } = verify(
-    token,
-    'd2e3a40eae0ed07a8a26c51cbf0d3d34',
-  ) as IPayload;
+  let user_id: string;
+  try {
+    const { sub } = verify(
+      token,
+      'd2e3a40eae0ed07a8a26c51cbf0d3d34',
+    ) as IPayload;
+
+    user_id = sub;
+  } catch (error) {
+    throw new AppError('Invalid token', 401);
+  }
 
   const usersRepository = new UsersRepository();
 
