@@ -1,15 +1,29 @@
-describe('Create Category', () => {
-  it('Result should be equal a 4', () => {
-    const sum = 2 + 2;
-    const result = 4;
+import { CategoriesRepositoryInMemory } from '../../repositories/in-memory/CategoriesRepositoryInMemory';
+import { CreateCategoryUseCase } from './CreateCategoryUseCase';
 
-    expect(sum).toBe(result);
+let createCategoryUseCase: CreateCategoryUseCase;
+let categoriesRepositoryInMemory: CategoriesRepositoryInMemory;
+
+describe('Create Category', () => {
+  beforeEach(() => {
+    categoriesRepositoryInMemory = new CategoriesRepositoryInMemory();
+    createCategoryUseCase = new CreateCategoryUseCase(
+      categoriesRepositoryInMemory,
+    );
   });
 
-  it('Result should not be equal a 4', () => {
-    const sum = 2 + 2;
-    const result = 5;
+  it('should be able to create a new category', async () => {
+    const category = {
+      name: 'category name test',
+      description: 'category description test',
+    };
 
-    expect(sum).not.toBe(result);
+    await createCategoryUseCase.execute(category);
+
+    const categoryCreated = await categoriesRepositoryInMemory.findByName(
+      category.name,
+    );
+
+    expect(categoryCreated).toHaveProperty('id');
   });
 });
