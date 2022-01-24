@@ -17,6 +17,9 @@
             ],
             "@utils/*": [
                 "utils/*"
+            ],
+            "@errors/*": [
+                "errors/*"
             ]
         },
         "esModuleInterop": true,
