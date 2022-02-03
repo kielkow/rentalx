@@ -3,6 +3,7 @@ import { Router } from 'express';
 import { ensureAuthenticated } from '@shared/infra/http/middlewares/ensureAuthenticated';
 
 import { authenticateRoutes } from './authenticate.routes';
+import { carsRoutes } from './cars.routes';
 import { categoriesRoutes } from './categories.routes';
 import { specificationsRoutes } from './specifications.routes';
 import { usersRoutes } from './users.routes';
@@ -14,6 +15,7 @@ router.use('/users', usersRoutes);
 
 router.use(ensureAuthenticated);
 
+router.use('/cars', carsRoutes);
 router.use('/categories', categoriesRoutes);
 router.use('/specifications', specificationsRoutes);
 
