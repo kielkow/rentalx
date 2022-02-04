@@ -44,7 +44,11 @@
                 ],
                 "summary": "Create a category",
                 "description": "Create a new category",
-                "security": [],
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -72,7 +76,11 @@
                 ],
                 "summary": "List categories",
                 "description": "List all categories",
-                "security": [],
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -97,7 +105,11 @@
                 ],
                 "summary": "Upload categories",
                 "description": "Upload new categories",
-                "security": [],
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "multipart/form-data": {
@@ -130,7 +142,11 @@
                 ],
                 "summary": "Create a specification",
                 "description": "Create a new specification",
-                "security": [],
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -158,7 +174,11 @@
                 ],
                 "summary": "List specifications",
                 "description": "List all specifications",
-                "security": [],
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Success",
