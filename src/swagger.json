@@ -175,6 +175,73 @@
                     }
                 }
             }
+        },
+        "/users": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Create a user",
+                "description": "Create a new user",
+                "security": [],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/User/Create"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "User already exists"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/users/avatar": {
+            "patch": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Upload user avatar",
+                "description": "Upload user avatar",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "avatar": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -266,6 +333,31 @@
                         "created_at": "2021-12-13T14:33:37.356Z"
                     }
                 ]
+            }
+        },
+        "User": {
+            "Create": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "driver_license": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "name": "Matheus Kielkowski",
+                    "email": "matheuskiel6@fiorifer.com.br",
+                    "password": "12345",
+                    "driver_license": "12345"
+                }
             }
         }
     }
