@@ -37,6 +37,43 @@
         }
     ],
     "paths": {
+        "/sessions": {
+            "post": {
+                "tags": [
+                    "Session"
+                ],
+                "summary": "Create a session",
+                "description": "Create a new session",
+                "security": [],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Session/Create"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Session/Response"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "E-mail or password incorrect"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
         "/categories": {
             "post": {
                 "tags": [
@@ -377,6 +414,47 @@
                     "email": "matheuskiel6@fiorifer.com.br",
                     "password": "12345",
                     "driver_license": "12345"
+                }
+            }
+        },
+        "Session": {
+            "Create": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "email": "matheuskiel@fiorifer.com.br",
+                    "password": "12345"
+                }
+            },
+            "Response": {
+                "type": "object",
+                "properties": {
+                    "user": {
+                        "type": "object",
+                        "properties": {
+                            "name": {
+                                "type": "string"
+                            },
+                            "email": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "token": "string"
+                },
+                "example":{
+                    "user": {
+                        "name": "Matheus Kielkowski",
+                        "email": "matheuskiel6@fiorifer.com.br"
+                    },
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDM5ODg3NTMsImV4cCI6MTY0NDA3NTE1Mywic3ViIjoiYzdjYjUyMWMtZTMwYS00MTQzLTk2MWMtNWJhYTNmMDQyN2ExIn0.WrvqAIeDbUMTJCN4zCGhccfF0_ReTai0E_m6uPJ2-04"
                 }
             }
         }
