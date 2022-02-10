@@ -7,7 +7,7 @@ class ListCarsController {
   async handle(request: Request, response: Response): Promise<Response> {
     const listCarsUseCase = container.resolve(ListCarsUseCase);
 
-    const cars = await listCarsUseCase.execute();
+    const cars = await listCarsUseCase.execute(request.query);
 
     return response.json(cars);
   }
