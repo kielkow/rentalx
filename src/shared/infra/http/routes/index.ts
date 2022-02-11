@@ -1,5 +1,6 @@
 import { Router } from 'express';
 
+import { ensureAdmin } from '@shared/infra/http/middlewares/ensureAdmin';
 import { ensureAuthenticated } from '@shared/infra/http/middlewares/ensureAuthenticated';
 
 import { authenticateRoutes } from './authenticate.routes';
@@ -16,7 +17,7 @@ router.use('/cars', listCarsRoute);
 
 router.use(ensureAuthenticated);
 
-router.use('/cars', createCarRoute);
+router.use('/cars', ensureAdmin, createCarRoute);
 router.use('/categories', categoriesRoutes);
 router.use('/specifications', specificationsRoutes);
 
