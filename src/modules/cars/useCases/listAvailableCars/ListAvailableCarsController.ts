@@ -9,7 +9,13 @@ class ListAvailableCarsController {
       ListAvailableCarsUseCase,
     );
 
-    const cars = await listAvailableCarsUseCase.execute(request.query);
+    const { name, brand, category_id } = request.query;
+
+    const cars = await listAvailableCarsUseCase.execute({
+      name: name as string,
+      brand: brand as string,
+      category_id: category_id as string,
+    });
 
     return response.json(cars);
   }
