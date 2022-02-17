@@ -4,7 +4,11 @@ import { ensureAdmin } from '@shared/infra/http/middlewares/ensureAdmin';
 import { ensureAuthenticated } from '@shared/infra/http/middlewares/ensureAuthenticated';
 
 import { authenticateRoutes } from './authenticate.routes';
-import { createCarRoute, listCarsRoute } from './cars.routes';
+import {
+  createCarRoute,
+  listCarsRoute,
+  carSpecificationsRoute,
+} from './cars.routes';
 import { categoriesRoutes } from './categories.routes';
 import { specificationsRoutes } from './specifications.routes';
 import { usersRoutes } from './users.routes';
@@ -18,6 +22,8 @@ router.use('/cars', listCarsRoute);
 router.use(ensureAuthenticated);
 
 router.use('/cars', ensureAdmin, createCarRoute);
+router.use('/cars', ensureAdmin, carSpecificationsRoute);
+
 router.use('/categories', categoriesRoutes);
 router.use('/specifications', specificationsRoutes);
 
