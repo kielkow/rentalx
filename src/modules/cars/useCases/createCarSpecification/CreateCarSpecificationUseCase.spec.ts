@@ -35,10 +35,13 @@ describe('Create Car Specification', () => {
       description: 'specification_description',
     });
 
-    await createCarSpecificationUseCase.execute({
+    const carSpecifications = await createCarSpecificationUseCase.execute({
       car_id: car.id,
       specifications_id: [specification.id],
     });
+
+    expect(carSpecifications).toHaveProperty('specifications');
+    expect(carSpecifications.specifications.length).toBe(1);
   });
 
   it('should not be able to add a new specification to a non-existent car', async () => {
