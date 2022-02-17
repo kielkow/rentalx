@@ -30,13 +30,10 @@ describe('Create Car Specification', () => {
       category_id: 'category_id',
     });
 
-    await specificationsRepositoryInMemory.create({
+    const specification = await specificationsRepositoryInMemory.create({
       name: 'specification_name',
       description: 'specification_description',
     });
-    const specification = await specificationsRepositoryInMemory.findByName(
-      'specification_name',
-    );
 
     await createCarSpecificationUseCase.execute({
       car_id: car.id,
