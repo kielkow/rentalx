@@ -27,6 +27,8 @@ class UploadCarImagesUseCase {
     }
 
     images_name.map(async image => {
+      // TODO: Delete duplicate images
+
       await this.carsImagesRepository.create(car_id, image);
     });
   }
