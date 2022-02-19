@@ -8,6 +8,7 @@ import {
   createCarRoute,
   listCarsRoute,
   carSpecificationsRoute,
+  carsImagesRoute,
 } from './cars.routes';
 import { categoriesRoutes } from './categories.routes';
 import { specificationsRoutes } from './specifications.routes';
@@ -23,6 +24,7 @@ router.use(ensureAuthenticated);
 
 router.use('/cars', ensureAdmin, createCarRoute);
 router.use('/cars', ensureAdmin, carSpecificationsRoute);
+router.use('/cars', ensureAdmin, carsImagesRoute);
 
 router.use('/categories', categoriesRoutes);
 router.use('/specifications', specificationsRoutes);
