@@ -29,7 +29,7 @@ const carSpecificationsRoute = carsRoutes.post(
 );
 
 const carsImagesRoute = carsRoutes.post(
-  '/images',
+  '/images/:id',
   uploadCarImages.array('images'),
   uploadCarImagesController.handle,
 );
