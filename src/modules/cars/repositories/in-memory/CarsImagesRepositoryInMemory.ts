@@ -17,6 +17,11 @@ class CarsImagesRepositoryInMemory implements ICarsImagesRepository {
 
     return carImage;
   }
+
+  async findByCarId(car_id: string): Promise<CarImage[]> {
+    const images = this.carsImages.filter(image => image.car_id === car_id);
+    return images;
+  }
 }
 
 export { CarsImagesRepositoryInMemory };
