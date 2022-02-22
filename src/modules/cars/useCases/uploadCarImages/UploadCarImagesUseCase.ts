@@ -30,14 +30,13 @@ class UploadCarImagesUseCase {
     const carImages = await this.carsImagesRepository.findByCarId(car_id);
 
     images_name.map(async image => {
-      // TODO: Delete duplicate images
       for (const carImage of carImages) {
         const imageNotExists = image.split('-')[1];
         const imageExists = carImage.image_name.split('-')[1];
 
         if (imageNotExists === imageExists) {
-          // TODO: Delete from tmp and database
           deleteFile(`./tmp/cars/${carImage.image_name}`);
+          this.carsImagesRepository.delete(carImage.image_name);
         }
       }
 
