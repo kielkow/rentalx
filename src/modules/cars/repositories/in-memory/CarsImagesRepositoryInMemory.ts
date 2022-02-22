@@ -22,6 +22,16 @@ class CarsImagesRepositoryInMemory implements ICarsImagesRepository {
     const images = this.carsImages.filter(image => image.car_id === car_id);
     return images;
   }
+
+  async delete(image_name: string): Promise<void> {
+    const image = this.carsImages.find(
+      image => image.image_name === image_name,
+    );
+
+    const index = this.carsImages.indexOf(image);
+
+    this.carsImages.splice(index, 1);
+  }
 }
 
 export { CarsImagesRepositoryInMemory };
