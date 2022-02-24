@@ -26,13 +26,29 @@ describe('Create Rental', () => {
   it('should not be able to create a new rental if there is another open to the same user', async () => {
     await createRentalUseCase.execute({
       user_id: 'user_id',
-      car_id: 'car_id',
+      car_id: 'car_id_1',
       expected_return_date: new Date(),
     });
 
     expect(async () => {
       await createRentalUseCase.execute({
         user_id: 'user_id',
+        car_id: 'car_id_2',
+        expected_return_date: new Date(),
+      });
+    }).rejects.toBeInstanceOf(AppError);
+  });
+
+  it('should not be able to create a new rental if there is another open to the same car', async () => {
+    await createRentalUseCase.execute({
+      user_id: 'user_id_1',
+      car_id: 'car_id',
+      expected_return_date: new Date(),
+    });
+
+    expect(async () => {
+      await createRentalUseCase.execute({
+        user_id: 'user_id_2',
         car_id: 'car_id',
         expected_return_date: new Date(),
       });
