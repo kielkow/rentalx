@@ -1,4 +1,5 @@
 import { RentalsRepositoryInMemory } from '@modules/rentals/repositories/in-memory/RentalsRepositoryInMemory';
+import { AppError } from '@shared/errors/AppError';
 
 import { CreateRentalUseCase } from './CreateRentalUseCase';
 
@@ -20,5 +21,21 @@ describe('Create Rental', () => {
 
     expect(rental).toHaveProperty('id');
     expect(rental).toHaveProperty('start_date');
+  });
+
+  it('should not be able to create a new rental if there is another open to the same user', async () => {
+    await createRentalUseCase.execute({
+      user_id: 'user_id',
+      car_id: 'car_id',
+      expected_return_date: new Date(),
+    });
+
+    expect(async () => {
+      await createRentalUseCase.execute({
+        user_id: 'user_id',
+        car_id: 'car_id',
+        expected_return_date: new Date(),
+      });
+    }).rejects.toBeInstanceOf(AppError);
   });
 });
