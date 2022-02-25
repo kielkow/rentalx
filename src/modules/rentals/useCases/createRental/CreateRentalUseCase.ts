@@ -1,6 +1,11 @@
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+
 import { Rental } from '@modules/rentals/infra/typeorm/entities/Rental';
 import { IRentalsRepository } from '@modules/rentals/repositories/IRentalsRepository';
 import { AppError } from '@shared/errors/AppError';
+
+dayjs.extend(utc);
 
 interface IRequest {
   user_id: string;
@@ -28,6 +33,20 @@ class CreateRentalUseCase {
     );
     if (rentalOpenToUser) {
       throw new AppError('There is a rental in progress for user');
+    }
+
+    const dateNowToUTC = dayjs(new Date()).utc().local().format();
+    const expectedReturnDateToUTC = dayjs(expected_return_date)
+      .utc()
+      .local()
+      .format();
+
+    const rentalHours = dayjs(expectedReturnDateToUTC).diff(
+      dateNowToUTC,
+      'hours',
+    );
+    if (rentalHours < 24) {
+      throw new AppError('The rental must have an minimun of 24 hours');
     }
 
     const rental = await this.rentalsRepository.create({
