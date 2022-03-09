@@ -1,5 +1,6 @@
 import { ICreateUserDTO } from '@modules/accounts/dtos/ICreateUserDTO';
 import { UsersRepositoryInMemory } from '@modules/accounts/repositories/in-memory/UsersRepositoryInMemory';
+import { AppError } from '@shared/errors/AppError';
 
 import { CreateUserUseCase } from './CreateUserUseCase';
 
@@ -29,5 +30,20 @@ describe('Create User', () => {
     expect(userCreated).toHaveProperty('id');
     expect(userCreated.name).toEqual('jonh doe');
     expect(userCreated.driver_license).toEqual('000123');
+  });
+
+  it('should not be able to create an user with the same e-mail', async () => {
+    const user: ICreateUserDTO = {
+      name: 'jonh doe',
+      email: 'jonhdoe@email.com',
+      password: '123456',
+      driver_license: '000123',
+    };
+
+    await createUserUseCase.execute(user);
+
+    expect(async () => {
+      await createUserUseCase.execute(user);
+    }).rejects.toBeInstanceOf(AppError);
   });
 });
