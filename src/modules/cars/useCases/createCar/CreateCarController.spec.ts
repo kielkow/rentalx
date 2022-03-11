@@ -44,15 +44,20 @@ describe('Create Car Controller', () => {
         Authorization: `Bearer ${token}`,
       });
 
-    const response = await request(app).post('/cars').send({
-      name: 'name',
-      description: 'description',
-      daily_rate: 100,
-      license_plate: 'license_plate',
-      fine_amount: 100,
-      brand: 'brand',
-      category_id: category.id,
-    });
+    const response = await request(app)
+      .post('/cars')
+      .send({
+        name: 'name',
+        description: 'description',
+        daily_rate: 100,
+        license_plate: 'license_plate',
+        fine_amount: 100,
+        brand: 'brand',
+        category_id: category.id,
+      })
+      .set({
+        Authorization: `Bearer ${token}`,
+      });
 
     expect(response.status).toBe(201);
     expect(response.body).toHaveProperty('id');
