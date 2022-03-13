@@ -12,12 +12,12 @@ class CreateCarSpecificationController {
       CreateCarSpecificationUseCase,
     );
 
-    const cars = await createCarSpecificationUseCase.execute({
+    const car = await createCarSpecificationUseCase.execute({
       car_id: id,
       specifications_id,
     });
 
-    return response.json(cars);
+    return response.json(car);
   }
 }
 
