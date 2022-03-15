@@ -449,7 +449,7 @@
                     },
                     "token": "string"
                 },
-                "example":{
+                "example": {
                     "user": {
                         "name": "Matheus Kielkowski",
                         "email": "matheuskiel6@fiorifer.com.br"
@@ -493,6 +493,54 @@
                     "brand": "Subaru",
                     "category_id": "e42e6d7a-59fc-47e4-b850-7e1ae6874ab2"
                 }
+            },
+            "ListAvailable": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string"
+                        },
+                        "name": {
+                            "type": "string"
+                        },
+                        "description": {
+                            "type": "string"
+                        },
+                        "daily_rate": {
+                            "type": "number"
+                        },
+                        "license_plate": {
+                            "type": "string"
+                        },
+                        "fine_amount": {
+                            "type": "number"
+                        },
+                        "brand": {
+                            "type": "string"
+                        },
+                        "category_id": {
+                            "type": "string"
+                        },
+                        "created_at": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "example": [
+                    {
+                        "id": "f4aeb30b-b380-4f29-a494-b2e3ec37645a",
+                        "name": "Subaru Impreza",
+                        "description": "The Subaru Impreza is a compact car manufactured since 1992 by Subaru, — the automobile division of Japan's Fuji Heavy Industries.",
+                        "daily_rate": 100,
+                        "license_plate": "XXXX-XX",
+                        "fine_amount": 100,
+                        "brand": "Subaru",
+                        "category_id": "e42e6d7a-59fc-47e4-b850-7e1ae6874ab2",
+                        "created_at": "2022-02-03T14:52:30.305Z"
+                    }
+                ]
             }
         }
     }
