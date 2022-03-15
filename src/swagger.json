@@ -299,6 +299,40 @@
                     }
                 }
             }
+        },
+        "/cars": {
+            "post": {
+                "tags": [
+                    "Car"
+                ],
+                "summary": "Create a car",
+                "description": "Create a new car",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Car/Create"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Car already exists"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
         }
     },
     "definitions": {
