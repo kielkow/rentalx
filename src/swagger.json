@@ -457,6 +457,43 @@
                     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NDM5ODg3NTMsImV4cCI6MTY0NDA3NTE1Mywic3ViIjoiYzdjYjUyMWMtZTMwYS00MTQzLTk2MWMtNWJhYTNmMDQyN2ExIn0.WrvqAIeDbUMTJCN4zCGhccfF0_ReTai0E_m6uPJ2-04"
                 }
             }
+        },
+        "Car": {
+            "Create": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "daily_rate": {
+                        "type": "number"
+                    },
+                    "license_plate": {
+                        "type": "string"
+                    },
+                    "fine_amount": {
+                        "type": "number"
+                    },
+                    "brand": {
+                        "type": "string"
+                    },
+                    "category_id": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "name": "Subaru Impreza",
+                    "description": "The Subaru Impreza is a compact car manufactured since 1992 by Subaru, — the automobile division of Japan's Fuji Heavy Industries.",
+                    "daily_rate": 100,
+                    "license_plate": "XXXX-XX",
+                    "fine_amount": 100,
+                    "brand": "Subaru",
+                    "category_id": "e42e6d7a-59fc-47e4-b850-7e1ae6874ab2"
+                }
+            }
         }
     }
 }
