@@ -333,6 +333,31 @@
                     }
                 }
             }
+        },
+        "/categories/available": {
+            "get": {
+                "tags": [
+                    "Car"
+                ],
+                "summary": "List available cars",
+                "description": "List all available cars",
+                "security": [],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Car/ListAvailable"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
         }
     },
     "definitions": {
