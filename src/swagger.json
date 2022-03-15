@@ -334,7 +334,7 @@
                 }
             }
         },
-        "/categories/available": {
+        "/cars/available": {
             "get": {
                 "tags": [
                     "Car"
