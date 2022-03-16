@@ -358,6 +358,51 @@
                     }
                 }
             }
+        },
+        "/cars/specifications/{car_id}": {
+            "post": {
+                "tags": [
+                    "Car"
+                ],
+                "summary": "Create a car specification",
+                "description": "Create a new car specification",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "car_id",
+                        "description": "car ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Car/Specification"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "Car already exists"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -488,8 +533,8 @@
                     }
                 },
                 "example": {
-                    "email": "matheuskiel@fiorifer.com.br",
-                    "password": "12345"
+                    "email": "admin@rentx.com.br",
+                    "password": "admin"
                 }
             },
             "Response": {
@@ -600,6 +645,22 @@
                         "created_at": "2022-02-03T14:52:30.305Z"
                     }
                 ]
+            },
+            "Specification": {
+                "type": "object",
+                "properties": {
+                    "specifications_id": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "example": {
+                    "specifications_id": [
+                        "8609f28d-1c60-42a1-a907-41df7d0c8b41"
+                    ]
+                }
             }
         }
     }
