@@ -113,11 +113,7 @@
                 ],
                 "summary": "List categories",
                 "description": "List all categories",
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
+                "security": [],
                 "responses": {
                     "200": {
                         "description": "Success",
@@ -211,11 +207,7 @@
                 ],
                 "summary": "List specifications",
                 "description": "List all specifications",
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
+                "security": [],
                 "responses": {
                     "200": {
                         "description": "Success",
