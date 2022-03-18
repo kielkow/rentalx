@@ -446,6 +446,88 @@
                     }
                 }
             }
+        },
+        "/rentals": {
+            "post": {
+                "tags": [
+                    "Rental"
+                ],
+                "summary": "Create a rental",
+                "description": "Create a new rental",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/definitions/Rental/Create"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Rental/Created"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid params",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "message": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "example": {
+                                                "message": "Car is unavailable"
+                                            }
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "message": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "example": {
+                                                "message": "There is a rental in progress for user"
+                                            }
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "message": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "example": {
+                                                "message": "The rental must have an minimun of 24 hours"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -703,6 +785,54 @@
                     "specifications_id": [
                         "8609f28d-1c60-42a1-a907-41df7d0c8b41"
                     ]
+                }
+            }
+        },
+        "Rental": {
+            "Create": {
+                "type": "object",
+                "properties": {
+                    "car_id": {
+                        "type": "string"
+                    },
+                    "expected_return_date": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "car_id": "f4aeb30b-b380-4f29-a494-b2e3ec37645a",
+                    "expected_return_date": "2022-03-19T13:58:44.750Z"
+                }
+            },
+            "Created": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "car_id": {
+                        "type": "string"
+                    },
+                    "user_id": {
+                        "type": "string"
+                    },
+                    "expected_return_date": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string"
+                    },
+                    "updated_at": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "id": "1fa5195e-ff85-4d9c-b032-361796289b5c",
+                    "car_id": "59526d25-5af9-4c4f-9b05-02c4007a33fe",
+                    "user_id": "5f25b613-4a26-49d9-8fbb-39b616a47797",
+                    "expected_return_date": "2022-03-19T13:58:44.750Z",
+                    "created_at": "2022-03-18T13:58:44.819Z",
+                    "updated_at": "2022-03-18T13:58:44.819Z"
                 }
             }
         }
