@@ -8,11 +8,10 @@ import { AppError } from '@shared/errors/AppError';
 
 interface IRequest {
   id: string;
-  car_id: string;
 }
 
 @injectable()
-class CreateRentalUseCase {
+class DevolutionRentalUseCase {
   constructor(
     @inject('RentalsRepository')
     private rentalsRepository: IRentalsRepository,
@@ -24,7 +23,7 @@ class CreateRentalUseCase {
     private carsRepository: ICarsRepository,
   ) {}
 
-  async execute({ id, car_id }: IRequest): Promise<Rental> {
+  async execute({ id }: IRequest): Promise<Rental> {
     let total = 0;
 
     const rental = await this.rentalsRepository.findById(id);
@@ -32,7 +31,7 @@ class CreateRentalUseCase {
       throw new AppError('Rental does not exists');
     }
 
-    const car = await this.carsRepository.findById(car_id);
+    const car = await this.carsRepository.findById(rental.car_id);
     if (!car) {
       throw new AppError('Car does not exists');
     }
@@ -66,4 +65,4 @@ class CreateRentalUseCase {
   }
 }
 
-export { CreateRentalUseCase };
+export { DevolutionRentalUseCase };
