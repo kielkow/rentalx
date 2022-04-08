@@ -7,17 +7,23 @@ class RentalsRepositoryInMemory implements IRentalsRepository {
   rentals: Rental[] = [];
 
   async create({
-    user_id,
+    id,
     car_id,
+    user_id,
+    end_date,
     expected_return_date,
+    total
   }: ICreateRentalDTO): Promise<Rental> {
     const rental = new Rental();
 
     Object.assign(rental, {
+      id,
       user_id,
       car_id,
+      end_date,
       expected_return_date,
       start_date: new Date(),
+      total
     });
 
     this.rentals.push(rental);
@@ -36,6 +42,11 @@ class RentalsRepositoryInMemory implements IRentalsRepository {
     const rental = this.rentals.find(
       rental => rental.user_id === user_id && !rental.end_date,
     );
+    return rental;
+  }
+
+  async findById(id: string): Promise<Rental> {
+    const rental = this.rentals.find(rental => rental.id === id);
     return rental;
   }
 }
