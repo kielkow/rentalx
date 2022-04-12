@@ -12,7 +12,7 @@ class RentalsRepositoryInMemory implements IRentalsRepository {
     user_id,
     end_date,
     expected_return_date,
-    total
+    total,
   }: ICreateRentalDTO): Promise<Rental> {
     const rental = new Rental();
 
@@ -23,7 +23,7 @@ class RentalsRepositoryInMemory implements IRentalsRepository {
       end_date,
       expected_return_date,
       start_date: new Date(),
-      total
+      total,
     });
 
     this.rentals.push(rental);
@@ -48,6 +48,10 @@ class RentalsRepositoryInMemory implements IRentalsRepository {
   async findById(id: string): Promise<Rental> {
     const rental = this.rentals.find(rental => rental.id === id);
     return rental;
+  }
+
+  async findByUser(user_id: string): Promise<Rental[]> {
+    return this.rentals.filter(rental => rental.user_id === user_id);
   }
 }
 
