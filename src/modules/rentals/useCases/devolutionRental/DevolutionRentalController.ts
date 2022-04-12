@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import {  DevolutionRentalUseCase } from './DevolutionRentalUseCase';
+import { DevolutionRentalUseCase } from './DevolutionRentalUseCase';
 
 class DevolutionRentalController {
   async handle(request: Request, response: Response): Promise<Response> {
