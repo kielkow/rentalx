@@ -601,6 +601,57 @@
                     }
                 }
             }
+        },
+        "/rentals/user": {
+            "get": {
+                "tags": [
+                    "Rental"
+                ],
+                "summary": "Get user rentals",
+                "description": "Get user rentals",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Rental/List"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid params",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "message": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "example": {
+                                                "message": "Invalid token"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -950,6 +1001,98 @@
                     "created_at": "2022-04-08T17:12:32.843Z",
                     "updated_at": "2022-04-08T17:13:00.436Z"
                 }
+            },
+            "List": {
+                "type": "array",
+                "items": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "car_id": {
+                        "type": "string"
+                    },
+                    "user_id": {
+                        "type": "string"
+                    },
+                    "start_date": {
+                        "type": "string"
+                    },
+                    "end_date": {
+                        "type": "string"
+                    },
+                    "expected_return_date": {
+                        "type": "string"
+                    },
+                    "total": {
+                        "type": "number"
+                    },
+                    "created_at": {
+                        "type": "string"
+                    },
+                    "updated_at": {
+                        "type": "string"
+                    },
+                    "car": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "string"
+                            },
+                            "available": {
+                                "type": "boolean"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "description": {
+                                "type": "string"
+                            },
+                            "daily_rate": {
+                                "type": "number"
+                            },
+                            "license_plate": {
+                                "type": "string"
+                            },
+                            "fine_amount": {
+                                "type": "number"
+                            },
+                            "brand": {
+                                "type": "string"
+                            },
+                            "category_id": {
+                                "type": "string"
+                            },
+                            "created_at": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "example": [
+                    {
+                        "id": "6b9c47b8-a4d2-4705-aac4-d7e93bf9d6c0",
+                        "car_id": "7ed163a7-2b85-43b2-a1f6-d56ca0d687d7",
+                        "user_id": "5f25b613-4a26-49d9-8fbb-39b616a47797",
+                        "start_date": "2022-04-08T17:12:32.843Z",
+                        "end_date": "2022-04-14T02:37:07.964Z",
+                        "expected_return_date": "2022-04-09T17:12:32.762Z",
+                        "total": "500",
+                        "created_at": "2022-04-08T17:12:32.843Z",
+                        "updated_at": "2022-04-14T02:37:07.969Z",
+                        "car": {
+                            "id": "7ed163a7-2b85-43b2-a1f6-d56ca0d687d7",
+                            "available": true,
+                            "name": "Subaru Impreza",
+                            "description": "The Subaru Impreza is a compact car manufactured since 1992 by Subaru, — the automobile division of Japan's Fuji Heavy Industries.",
+                            "daily_rate": "100",
+                            "license_plate": "XXXX-XX",
+                            "fine_amount": "100",
+                            "brand": "Subaru",
+                            "category_id": "e42e6d7a-59fc-47e4-b850-7e1ae6874ab2",
+                            "created_at": "2022-03-15T14:29:50.472Z"
+                        }
+                    }
+                ]
             }
         }
     }
