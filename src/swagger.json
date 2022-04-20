@@ -442,7 +442,7 @@
                         "description": "Created"
                     },
                     "400": {
-                        "description": "Car already exists"
+                        "description": "Car does not exists"
                     },
                     "500": {
                         "description": "Internal server error"
