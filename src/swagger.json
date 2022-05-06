@@ -662,7 +662,7 @@
                     "User"
                 ],
                 "summary": "Forgot password",
-                "description": "Forgot password",
+                "description": "Send e-mail to user with link to forgot password",
                 "security": [
                     {
                         "BearerAuth": []
