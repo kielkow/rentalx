@@ -28,10 +28,16 @@ class RefreshTokenUseCase {
       expires_refresh_token_days,
     } = auth;
 
-    const { sub: user_id, email } = verify(
-      token,
-      secret_refresh_token,
-    ) as IPayload;
+    let user_id;
+    let email;
+    try {
+      const tokenData = verify(token, secret_refresh_token) as IPayload;
+
+      user_id = tokenData.sub;
+      email = tokenData.email;
+    } catch (error) {
+      throw new AppError('Invalid token', 401);
+    }
 
     const userToken =
       await this.usersTokensRepository.findByUserIdAndRefreshToken(
@@ -40,7 +46,7 @@ class RefreshTokenUseCase {
       );
 
     if (!userToken) {
-      throw new AppError('Refresh token does not exists');
+      throw new AppError('User refresh token does not exists');
     }
 
     await this.usersTokensRepository.deleteById(userToken.id);
