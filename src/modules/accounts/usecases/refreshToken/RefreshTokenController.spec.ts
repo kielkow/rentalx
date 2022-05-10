@@ -42,4 +42,13 @@ describe('Refresh Token Controller', () => {
     expect(response.status).toBe(200);
     expect(response.body).toBeTruthy();
   });
+
+  it('should not be able to create a new refresh token with invalid token', async () => {
+    const response = await request(app).post('/refresh-token').send({
+      token: 'invalid-token',
+    });
+
+    expect(response.status).toBe(401);
+    expect(response.body.message).toEqual('Invalid token');
+  });
 });
