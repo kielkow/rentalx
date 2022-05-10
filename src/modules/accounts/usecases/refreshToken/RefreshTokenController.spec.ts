@@ -51,4 +51,24 @@ describe('Refresh Token Controller', () => {
     expect(response.status).toBe(401);
     expect(response.body.message).toEqual('Invalid token');
   });
+
+  it('should not be able to create a new refresh token with a nonexist token', async () => {
+    const authResponse = await request(app).post('/sessions').send({
+      email: 'admin@rentx.com.br',
+      password: 'admin',
+    });
+
+    const { refresh_token } = authResponse.body;
+
+    await connection.query(
+      `DELETE FROM USERS_TOKENS WHERE refresh_token = '${refresh_token}'`,
+    );
+
+    const response = await request(app).post('/refresh-token').send({
+      token: refresh_token,
+    });
+
+    expect(response.status).toBe(400);
+    expect(response.body.message).toEqual('User refresh token does not exists');
+  });
 });
