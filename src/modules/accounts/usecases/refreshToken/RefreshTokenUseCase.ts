@@ -28,8 +28,8 @@ class RefreshTokenUseCase {
       expires_refresh_token_days,
     } = auth;
 
-    let user_id;
-    let email;
+    let user_id: string;
+    let email: string;
     try {
       const tokenData = verify(token, secret_refresh_token) as IPayload;
 
