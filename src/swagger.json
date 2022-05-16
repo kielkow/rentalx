@@ -40,7 +40,7 @@
         "/sessions": {
             "post": {
                 "tags": [
-                    "Session"
+                    "Authenticate"
                 ],
                 "summary": "Create a session",
                 "description": "Create a new session",
