@@ -791,6 +791,85 @@
                     }
                 }
             }
+        },
+        "/refresh-token": {
+            "post": {
+                "tags": [
+                    "Authenticate"
+                ],
+                "summary": "Generate refresh token",
+                "description": "Generate a new user refresh token",
+                "security": [],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "token": {
+                                        "type": "string"
+                                    }
+                                },
+                                "example": {
+                                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHJlbnR4LmNvbS5iciIsImlhdCI6MTY1MjcwNzM5MSwiZXhwIjoxNjU1Mjk5MzkxLCJzdWIiOiI1ZjI1YjYxMy00YTI2LTQ5ZDktOGZiYi0zOWI2MTZhNDc3OTcifQ.Y5K4B5SCc95Z-oQ8Q00Wah47GAnptJ9OJ6EzoU4ORmU"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string",
+                                    "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHJlbnR4LmNvbS5iciIsImlhdCI6MTY1MjcwNzkxMSwiZXhwIjoxNjU1Mjk5OTExLCJzdWIiOiI1ZjI1YjYxMy00YTI2LTQ5ZDktOGZiYi0zOWI2MTZhNDc3OTcifQ.3WaX8AsWPIviz3QBIORtRKWvMwe9Pg7F0tCOB1wG9nU"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Refresh token does not exists",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "User refresh token does not exists"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid token",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "message": "Invalid token"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
         }
     },
     "definitions": {
