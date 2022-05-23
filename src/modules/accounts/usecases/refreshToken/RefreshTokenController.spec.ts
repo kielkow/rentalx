@@ -40,7 +40,8 @@ describe('Refresh Token Controller', () => {
     });
 
     expect(response.status).toBe(200);
-    expect(response.body).toBeTruthy();
+    expect(response.body).toHaveProperty('token');
+    expect(response.body).toHaveProperty('refresh_token');
   });
 
   it('should not be able to create a new refresh token with invalid token', async () => {
