@@ -52,11 +52,12 @@ describe('Refresh Token User', () => {
       password: user.password,
     });
 
-    const refreshToken = await refreshTokenUseCase.execute(
+    const refreshTokenResponse = await refreshTokenUseCase.execute(
       authenticationInfo.refresh_token,
     );
 
-    expect(refreshToken).toBeTruthy();
+    expect(refreshTokenResponse).toHaveProperty('token');
+    expect(refreshTokenResponse).toHaveProperty('refresh_token');
   });
 
   it('should not be able to generate a refresh token with a nonexistent token', async () => {
