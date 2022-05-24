@@ -797,8 +797,8 @@
                 "tags": [
                     "Authenticate"
                 ],
-                "summary": "Generate refresh token",
-                "description": "Generate a new user refresh token",
+                "summary": "Generate new tokens",
+                "description": "Generate a new tokens to user",
                 "security": [],
                 "requestBody": {
                     "content": {
@@ -823,8 +823,19 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "type": "string",
-                                    "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHJlbnR4LmNvbS5iciIsImlhdCI6MTY1MjcwNzkxMSwiZXhwIjoxNjU1Mjk5OTExLCJzdWIiOiI1ZjI1YjYxMy00YTI2LTQ5ZDktOGZiYi0zOWI2MTZhNDc3OTcifQ.3WaX8AsWPIviz3QBIORtRKWvMwe9Pg7F0tCOB1wG9nU"
+                                    "type": "object",
+                                    "properties": {
+                                        "token": {
+                                            "type": "string"
+                                        },
+                                        "refresh_token": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "example": {
+                                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTM0MDE0MzksImV4cCI6MTY1MzQwMjMzOSwic3ViIjoiNWYyNWI2MTMtNGEyNi00OWQ5LThmYmItMzliNjE2YTQ3Nzk3In0.z_8hmeZySg8KED4CQwFeUoyV6WIdKfBfr98pSSFoAOs",
+                                        "refresh_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQHJlbnR4LmNvbS5iciIsImlhdCI6MTY1MzQwMTQzOSwiZXhwIjoxNjU1OTkzNDM5LCJzdWIiOiI1ZjI1YjYxMy00YTI2LTQ5ZDktOGZiYi0zOWI2MTZhNDc3OTcifQ.OS6c6zOPH6b7uegSgQdPyH1B-o9J0hmRr1ZqO-zsTBg"
+                                    }
                                 }
                             }
                         }
