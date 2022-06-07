@@ -292,6 +292,35 @@
                 }
             }
         },
+        "/users/profile": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Show user profile",
+                "description": "Show info about user profile",
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/User/Profile"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
         "/cars": {
             "post": {
                 "tags": [
@@ -996,6 +1025,37 @@
                     "email": "matheuskiel6@fiorifer.com.br",
                     "password": "12345",
                     "driver_license": "12345"
+                }
+            },
+            "Profile": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "driver_license": {
+                        "type": "string"
+                    },
+                    "avatar": {
+                        "type": "string"
+                    },
+                    "avatar_url": {
+                        "type": "string"
+                    }
+                },
+                "example": {
+                    "id": "5f25b613-4a26-49d9-8fbb-39b616a47797",
+                    "name": "admin",
+                    "email": "admin@rentx.com.br",
+                    "driver_license": "XXXXXX",
+                    "avatar": "28bbbc5afaa60567b2966bd5ff6be4fc-avatar.jpg",
+                    "avatar_url": "http://localhost:3333/avatar/28bbbc5afaa60567b2966bd5ff6be4fc-avatar.jpg"
                 }
             }
         },
