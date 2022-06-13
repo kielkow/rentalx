@@ -1,6 +1,7 @@
 import { CarsRepositoryInMemory } from '@modules/cars/repositories/in-memory/CarsRepositoryInMemory';
 import { RentalsRepositoryInMemory } from '@modules/rentals/repositories/in-memory/RentalsRepositoryInMemory';
 import { DayjsDateProvider } from '@shared/container/providers/DateProvider/implementations/DayjsDateProvider';
+import { AppError } from '@shared/errors/AppError';
 
 import { DevolutionRentalUseCase } from './DevolutionRentalUseCase';
 
@@ -53,5 +54,13 @@ describe('Devolution Rental', () => {
     expect(devolutionRental.total).toEqual(160);
     expect(devolutionRental.end_date).toBeTruthy();
     expect(available).toEqual(true);
+  });
+
+  it('should not be able to devolution a rental that does not exists', async () => {
+    expect(async () => {
+      await devolutionRentalUseCase.execute({
+        id: 'invalid-id',
+      });
+    }).rejects.toBeInstanceOf(AppError);
   });
 });
