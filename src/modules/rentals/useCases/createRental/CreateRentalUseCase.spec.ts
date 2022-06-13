@@ -47,6 +47,16 @@ describe('Create Rental', () => {
     expect(rental).toHaveProperty('start_date');
   });
 
+  it('should not be able to create a new rental if the car does not exists', async () => {
+    expect(async () => {
+      await createRentalUseCase.execute({
+        user_id: 'user_id',
+        car_id: 'invalid-id',
+        expected_return_date: dayjsDateProvider.dateTomorrow(),
+      });
+    }).rejects.toBeInstanceOf(AppError);
+  });
+
   it('should not be able to create a new rental if there is another open to the same user', async () => {
     const first_car = await carsRepositoryInMemory.create({
       name: 'first car',
