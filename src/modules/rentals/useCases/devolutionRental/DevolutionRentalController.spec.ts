@@ -86,4 +86,25 @@ describe('Devolution Rental Controller', () => {
     expect(response.body.end_date).toBeTruthy();
     expect(response.body.total).toEqual(200);
   });
+
+  it('should not be able to devolution a rental that does not exists', async () => {
+    const {
+      body: { token },
+    } = await request(app).post('/sessions').send({
+      email: 'admin@rentx.com.br',
+      password: 'admin',
+    });
+
+    const invalid_id = uuid();
+
+    const response = await request(app)
+      .post(`/rentals/devolution/${invalid_id}`)
+      .set({
+        Authorization: `Bearer ${token}`,
+      });
+
+    expect(response.status).toBe(400);
+    expect(response.body).toHaveProperty('message');
+    expect(response.body.message).toEqual('Rental does not exists');
+  });
 });
