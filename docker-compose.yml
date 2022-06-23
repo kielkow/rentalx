@@ -14,6 +14,16 @@ services:
     volumes:
       - pgdata:/data/postgres
 
+  nginx:
+    build: .docker/nginx
+    container_name: nginx
+    restart: always
+    tty: true
+    ports:
+      - "8080:80"
+    volumes: 
+      - .:/usr/app
+
   app:
     build: .
     container_name: rentx
@@ -25,6 +35,7 @@ services:
       - .:/usr/app
     links: 
       - database
+      - nginx
     depends_on:
       - database
 
