@@ -27,6 +27,7 @@
     "nodemailer": "^6.7.4",
     "pg": "^8.7.1",
     "pm2": "^5.2.0",
+    "rate-limiter-flexible": "^2.3.7",
     "reflect-metadata": "^0.1.13",
     "supertest": "^6.2.2",
     "swagger-ui-express": "^4.1.6",
