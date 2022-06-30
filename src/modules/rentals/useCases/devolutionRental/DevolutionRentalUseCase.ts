@@ -32,9 +32,6 @@ class DevolutionRentalUseCase {
     }
 
     const car = await this.carsRepository.findById(rental.car_id);
-    if (!car) {
-      throw new AppError('Car does not exists');
-    }
 
     let daily = this.dateProvider.compareInDays(
       rental.start_date,
