@@ -8,6 +8,7 @@
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --respawn src/shared/infra/http/server.ts",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli",
     "test": "NODE_ENV=test jest --setupFiles dotenv/config --runInBand --detectOpenHandles",
+    "test:staged": "NODE_ENV=test jest --setupFiles dotenv/config --runInBand --detectOpenHandles",
     "seed:admin": "ts-node-dev src/shared/infra/typeorm/seed/admin.ts"
   },
   "dependencies": {
@@ -23,7 +24,6 @@
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "handlebars": "^4.7.7",
-    "husky": "5.0.9",
     "jsonwebtoken": "^8.5.1",
     "mime": "^3.0.0",
     "multer": "^1.4.3",
@@ -75,6 +75,7 @@
     "eslint-plugin-import-helpers": "^1.1.0",
     "eslint-plugin-prettier": "^3.3.1",
     "git-commit-msg-linter": "3.0.0",
+    "husky": "5.0.9",
     "jest": "^27.4.7",
     "prettier": "^2.2.1",
     "ts-node-dev": "^1.1.8",
